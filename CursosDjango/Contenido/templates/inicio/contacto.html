@@ -1,0 +1,38 @@
+{% extends "inicio/encabezado.html" %}
+
+{% block titulo %} Contacto {% endblock %}
+
+{% block contenido %}
+    <section class="contacto">
+  <h2>Solicita Información</h2>
+  <form>
+    <div class="form-group">
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" required>
+    </div>
+
+    <div class="form-group">
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" name="correo" required>
+    </div>
+
+    <div class="form-group">
+      <label for="curso">Curso de interés:</label>
+      <select id="curso" name="curso" required>
+        <option value="">Seleccione un curso</option>
+        <option value="programacion">Programación</option>
+        <option value="bd">Bases de Datos</option>
+        <option value="web">Desarrollo Web</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="comentarios">Comentarios:</label>
+      <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+    </div>
+
+    <button type="submit">Enviar</button>
+  </form>
+</section>
+
+{% endblock %}
