@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cursos',
+    'ckeditor', # Si estás usando widgets personalizados
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ ROOT_URLCONF = 'CursosDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'cursos' / 'templates'],
         'DIRS': [BASE_DIR / 'Contenido' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -75,12 +77,22 @@ WSGI_APPLICATION = 'CursosDjango.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+     }
+ }
 
+#DATABASES = {
+#    'default':{
+#    'ENGINE': 'django.db.backends.mysql',
+#   'NAME': 'cursos_django',
+#   'USER': 'root',
+#    'PASSWORD':'',
+#    'HOST': 'localhost',
+#    'PORT': '3306',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -104,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -117,7 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [BASE_DIR / 'static']
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -127,3 +139,18 @@ import os
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# CKEDITOR CONFIGURACIÓN PERSONALIZADA
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
+}

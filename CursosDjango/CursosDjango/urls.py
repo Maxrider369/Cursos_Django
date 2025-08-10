@@ -20,6 +20,7 @@ from django.urls import path
 from Contenido import views
 from django.conf import settings
 from django.conf.urls.static import static
+from cursos import views as cursos_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +29,10 @@ urlpatterns = [
     #Direccion al contacto
     path('contacto/',views.contacto, name="contacto"),
     #Direccion a cursos
-    path('cursos/', views.cursos_list, name='cursos'),
+    path('cursos/', views.cursos, name='cursos'),
+    path('crear/', cursos_views.crear_curso, name='crear_curso'),
+     path('editar/<int:id>/', cursos_views.editar_curso, name='editar_curso'),
+    path('eliminar/<int:id>/', cursos_views.eliminar_curso, name='eliminar_curso'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

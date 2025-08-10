@@ -1,0 +1,43 @@
+{% extends "inicio/encabezado.html" %}
+{% load static %}
+{% block titulo %} crear curso {% endblock %}
+
+{% block contenido %}
+<div class="form-container">
+  <h2>Crear Nuevo Curso</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="id_nombre">Nombre del curso</label>
+    <input type="text" name="nombre" id="id_nombre" value="{{ form.nombre.value|default:'' }}">
+    {{ form.nombre.errors }}
+
+    <label for="id_descripcion">Descripción</label>
+    <textarea name="descripcion" id="id_descripcion">{{ form.descripcion.value|default:'' }}</textarea>
+    {{ form.descripcion.errors }}
+
+    <label for="id_instructor">Instructor</label>
+    <input type="text" name="instructor" id="id_instructor" value="{{ form.instructor.value|default:'' }}">
+    {{ form.instructor.errors }}
+
+    <label for="id_duracion_horas">Duración (horas)</label>
+    <input type="number" name="duracion_horas" id="id_duracion_horas" value="{{ form.duracion_horas.value|default:'' }}">
+    {{ form.duracion_horas.errors }}
+
+    <label for="id_precio">Precio</label>
+    <input type="number" step="0.01" name="precio" id="id_precio" value="{{ form.precio.value|default:'' }}">
+    {{ form.precio.errors }}
+
+    <label for="id_cupo_maximo">Cupo máximo</label>
+    <input type="number" name="cupo_maximo" id="id_cupo_maximo" value="{{ form.cupo_maximo.value|default:'' }}">
+    {{ form.cupo_maximo.errors }}
+
+    <label for="id_imagen">Imagen del curso</label>
+    <input type="file" name="imagen" id="id_imagen">
+    {{ form.imagen.errors }}
+
+    <button type="submit" class="submit-btn">Crear Curso</button>
+  </form>
+</div>
+{% endblock %}
