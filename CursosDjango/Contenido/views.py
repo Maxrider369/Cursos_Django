@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from cursos.models import Curso
 
 #Menu de direccionamiento.
 def principal (request):
@@ -8,7 +9,6 @@ def contacto (request):
     return render(request, "inicio/contacto.html")
 
 def cursos (request):
-    return render(request, "inicio/cursos.html")
+    cursos = Curso.objects.all()
+    return render(request, "inicio/cursos.html", {'cursos': cursos})
 
-def cursos_list(request):
-    return HttpResponse("Listado de cursos")

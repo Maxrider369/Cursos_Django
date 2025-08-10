@@ -3,22 +3,28 @@
 {% block titulo %} Cursos {% endblock %}
 
 {% block contenido %}
-    <section class="cursos">
+<section class="cursos">
   <h2>Lista de Cursos</h2>
   <div class="cards-cursos">
-    <div class="card">
-      <h3>Programación</h3>
-      <p>Aprende los fundamentos de la programación con Python, JavaScript y más.</p>
-    </div>
-    <div class="card">
-      <h3>Bases de Datos</h3>
-      <p>Domina el diseño, creación y gestión de bases de datos con SQL y herramientas modernas.</p>
-    </div>
-    <div class="card">
-      <h3>Desarrollo Web</h3>
-      <p>Construye sitios web modernos con HTML, CSS, JavaScript y frameworks populares.</p>
-    </div>
+    {% for curso in cursos %}
+      <div class="card">
+        <h3>{{ curso.nombre }}</h3>
+        <p>{{ curso.descripcion }}</p>
+        <p><strong>Instructor:</strong> {{ curso.instructor }}</p>
+        <p><strong>Duración:</strong> {{ curso.duracion_horas }} horas</p>
+        <p><strong>Precio:</strong> ${{ curso.precio }}</p>
+        <p><strong>Cupo máximo:</strong> {{ curso.cupo_maximo }}</p>
+        {% if curso.imagen %}
+          <img src="{{ curso.imagen.url }}" alt="{{ curso.nombre }}" style="max-width:100px;">
+        {% endif %}
+        <div style="margin-top:10px;">
+          <a href="{% url 'editar_curso' curso.id %}" class="btn-editar" style="color:#2563eb; margin-right:10px;">Editar</a>
+          <a href="{% url 'eliminar_curso' curso.id %}" class="btn-eliminar" style="color:#dc2626;" onclick="return confirm('¿Seguro que deseas eliminar este curso?');">Eliminar</a>
+        </div>
+      </div>
+    {% empty %}
+      <p>No hay cursos disponibles.</p>
+    {% endfor %}
   </div>
 </section>
-
 {% endblock %}

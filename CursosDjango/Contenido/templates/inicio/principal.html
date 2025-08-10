@@ -1,8 +1,15 @@
 {% extends "inicio/encabezado.html" %}
-
+{% load static %}
 {% block titulo %} Principal {% endblock %}
 
 {% block contenido %}
     <h1>Cursos</h1>
     <p>Los mejores cursos de todo el oeste</p>
+    <a href="{% url 'crear_curso' %}" 
+   style="display:inline-block; background-color:#FF9800; color:white; font-weight:600; padding:0.7rem 1.5rem; border-radius:8px; margin-bottom:1.5rem; font-size:1.1rem; text-decoration:none; box-shadow:0 2px 8px rgba(255,152,0,0.12); transition:background 0.3s;"
+   onmouseover="this.style.backgroundColor='#F57C00';"
+   onmouseout="this.style.backgroundColor='#FF9800';">
+  + Crear Curso
+</a>
+
 {% endblock %}
